@@ -18,6 +18,7 @@ This proof-of-concept (PoC) Spring Boot application demonstrates securing backen
 
     * The backend only accepts tokens that include a specific `aud` (audience) claim.
     * This ensures **tokens issued for one client (frontend, service) can’t be reused across services**.
+    * [RFC 9068](https://datatracker.ietf.org/doc/rfc9068/)
 
 ---
 
