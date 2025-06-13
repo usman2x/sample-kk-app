@@ -34,4 +34,5 @@ public class SecurityConfig {
       response.getWriter().write("{\"error\": \"Unauthorized: " + authException.getMessage() + "\"}");
     };
   }
+
 }

@@ -4,5 +4,6 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8080/realms/spring-jwt
+          audience: java-jwt-hello-world
 server:
   port: 8081
