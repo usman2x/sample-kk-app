@@ -1,4 +1,4 @@
-# Get the Access Token First
+# Get the Access Token for User
 curl -X POST http://localhost:8080/realms/spring-jwt/protocol/openid-connect/token \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "client_id=java-jwt-hello-world" \
@@ -7,6 +7,31 @@ curl -X POST http://localhost:8080/realms/spring-jwt/protocol/openid-connect/tok
   -d "password=admin" \
   -d "grant_type=password" \
   -d "scope=openid"
+
+#  Get the access token for client
+  curl -X POST http://localhost:8080/realms/spring-jwt/protocol/openid-connect/token \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -d "client_id=java-jwt-hello-world" \
+    -d "client_secret=fPv7HPZIztJOO8clry53YUMAP4KDErak" \
+    -d "grant_type=client_credentials"
+
+# Create User
+curl -X POST "http://localhost:8080/admin/realms/spring-jwt/users" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJSUWRyVU01OG9UZEFIUEE1TUdWQ21MVjJPMGZKeFJ0NWxRQWswbW5ZOVRzIn0.eyJleHAiOjE3NTAyMzUxODcsImlhdCI6MTc1MDIzMzM4NywianRpIjoiYmFlMTg5ZTQtMGE2ZC00MzkyLWEwYWQtOTI3ODlmYzQ5OGQ2IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9zcHJpbmctand0IiwiYXVkIjpbImphdmEtand0LWhlbGxvLXdvcmxkIiwiYWNjb3VudCJdLCJzdWIiOiJkYjQxOTFmZS01YTU0LTQ3OTgtOTk5OC1hOGM4ZWE2ZTlkNjAiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJqYXZhLWp3dC1oZWxsby13b3JsZCIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiLyoiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwiYWRtaW4iLCJ1bWFfYXV0aG9yaXphdGlvbiIsImRlZmF1bHQtcm9sZXMtc3ByaW5nLWp3dCJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImphdmEtand0LWhlbGxvLXdvcmxkIjp7InJvbGVzIjpbInVtYV9wcm90ZWN0aW9uIl19LCJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImN1c3RvbS1hdWRpZW5jZSBlbWFpbCBwcm9maWxlIiwiY2xpZW50SG9zdCI6IjE3Mi4xNy4wLjEiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInByZWZlcnJlZF91c2VybmFtZSI6InNlcnZpY2UtYWNjb3VudC1qYXZhLWp3dC1oZWxsby13b3JsZCIsImNsaWVudEFkZHJlc3MiOiIxNzIuMTcuMC4xIiwiY2xpZW50X2lkIjoiamF2YS1qd3QtaGVsbG8td29ybGQifQ.fgGT7zp13FPPexX4JYxO2dPUSftoQ0vGejKbT-Qe2tRmQKu8ybnCmewkN053IAOK75l6mJ9LYPxbXZTJZ7uChoTVl54g_K6FTjc0ku9M9P-CnMX2LLiOff2huLE7-ZMHSEfky9wnW-rQVy-qZwoBPMeokaRhOqVRDQM1IQ1-I7GN66p9oJ8uWG0dZeOMThFzeDTC7tZwof_iAWI1CzV36ZkfsGJVsk_kFp611xwFJ9D8a40dJaxRUXepBb24UOg5YeYJX85RqC_KCgt0SlboeN0HN3LP3FanRNR7ol6oJJ_81vis30PSoLmlo8yd9H2ZBDGkGcbuQvbpg8KYV3lirQ" \
+  -d '{
+    "username": "john.doe",
+    "enabled": true,
+    "email": "johndoe@gmail.com",
+    "firstName": "John",
+    "lastName": "Deo",
+    "credentials": [{
+      "type": "password",
+      "value": "secret123",
+      "temporary": false
+    }]
+  }'
+
 
 # Call the API
 curl -X GET http://localhost:8081/api/profile \

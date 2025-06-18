@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Home - Secure Area</title>
+</head>
+<body>
+<h2>Welcome, <span th:text="${#authentication.name}">User</span>!</h2>
+
+<p>You are logged in securely via Keycloak.</p>
+
+<form th:action="@{/logout}" method="post">
+  <button type="submit">Logout</button>
+</form>
+</body>
+</html>
